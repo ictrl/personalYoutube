@@ -13,10 +13,9 @@ const recordSchema = new mongoose.Schema(
 const recordModel = new mongoose.model("record", recordSchema);
 
 const saveRecord = async (file, body) => {
-  console.log({ file });
-  let fileName = file.path.split("\\")[2];
+  if(process.env.NODE_ENV === "production") let fileName = file.path.split('/')[2];
+else let fileName = file.path.split("\\")[2];
   const { ip, image, timestamp } = body;
-  // fileName = `${ip}-${fileName}`;
   try {
     const record = new recordModel({
       fileName,

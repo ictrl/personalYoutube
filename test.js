@@ -44,3 +44,33 @@
 //  heroku open
 //  wait for 5 min
 //  done
+
+//pro
+const file1 = {
+  fieldname: "record",
+  originalname: "59.94.95.165-1603292906432",
+  encoding: "7bit",
+  mimetype: "video/webm",
+  destination: "./public/uploads/",
+  filename: "59.94.95.165-1603292906432.mp4",
+  path: "public/uploads/59.94.95.165-1603292906432.mp4",
+  size: 87306,
+};
+
+const file = {
+  fieldname: "record",
+  originalname: "59.94.95.165-1603292549298",
+  encoding: "7bit",
+  mimetype: "video/webm",
+  destination: "./public/uploads/",
+  filename: "59.94.95.165-1603292549298.mp4",
+  path: "public\\uploads\\59.94.95.165-1603292549298.mp4",
+  size: 41923,
+};
+
+// if(process.env.NODE_ENV === "production") let fileName = file.path.split('/')[2];
+// else let fileName = file.path.split("\\")[2];
+let fileName1 = file1.path.split("/")[2];
+let fileName = file.path.split("\\")[2];
+console.log({ fileName1 });
+console.log({ fileName });
