@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import FlatList from "flatlist-react";
+import publicIp from "public-ip";
 import { get } from "axios";
 
 const Videos = () => {
@@ -24,8 +25,7 @@ const Videos = () => {
 
   useEffect(() => {
     const getIp = async () => {
-      // let ip = await publicIp.v4();
-      let ip = "59.94.95.165"; //todo
+      let ip = await publicIp.v4();
       setIp(ip);
       return ip;
     };
