@@ -14,7 +14,8 @@ const Videos = () => {
 
     var videoElement = document.createElement("video");
 
-    videoElement.src = `http://localhost:8000/video/${fileName}`;
+    // videoElement.src = `http://localhost:8000/video/${fileName}`;
+    videoElement.src = `/video/${fileName}`;
     videoElement.autoplay = true;
     videoElement.controls = true;
 
@@ -31,7 +32,8 @@ const Videos = () => {
     };
     const getRecords = async () => {
       let ip = await getIp();
-      let url = `http://localhost:8000/videos/${ip}`;
+      // let url = `http://localhost:8000/videos/${ip}`;
+      let url = `/videos/${ip}`;
       console.log({ url });
       get(url)
         .then((res) => setRecords(res.data))

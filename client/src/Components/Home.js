@@ -83,7 +83,8 @@ const Home = () => {
           "content-type": "multipart/form-data",
         },
       };
-      const url = "http://localhost:8000/upload";
+      // const url = "http://localhost:8000/upload";
+      const url = "/upload";
       post(url, formData, config)
         .then((res) => console.log(res))
         .catch((err) => console.error(err));
@@ -106,7 +107,7 @@ const Home = () => {
 
   const getIp = async () => {
     return await publicIp.v4();
-    // return "59.94.95.165"; 
+    // return "59.94.95.165";
   };
 
   const generateName = async () => {

@@ -38,7 +38,7 @@ type in integrated terminal
 
  heroku login
  heroku create
- git push heroku master //deploy master branch to heroku,
+ git push heroku main //deploy master branch to heroku,
  // if want to deploy different branch  use==>  git push heroku <different branch name>:master
  
  heroku config:set <ENVIRONMENT_VARIABLE=VALUE> 
