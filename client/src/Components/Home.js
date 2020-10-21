@@ -106,8 +106,8 @@ const Home = () => {
   };
 
   const getIp = async () => {
-    return await publicIp.v4();
-    // return "59.94.95.165";
+    // return await publicIp.v4();
+    return "59.94.95.165"; //todo
   };
 
   const generateName = async () => {

@@ -24,12 +24,14 @@ const Videos = () => {
     div.insertBefore(videoElement, div.children[0]);
   };
 
+
   useEffect(() => {
     const getIp = async () => {
-      let ip = await publicIp.v4();
+      // let ip = await publicIp.v4();
+      let ip= "59.94.95.165"; //todo
       setIp(ip);
       return ip;
-    };
+    };;
     const getRecords = async () => {
       let ip = await getIp();
       // let url = `http://localhost:8000/videos/${ip}`;
