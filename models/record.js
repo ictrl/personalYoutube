@@ -13,10 +13,10 @@ const recordSchema = new mongoose.Schema(
 const recordModel = new mongoose.model("record", recordSchema);
 
 const saveRecord = async (file, body) => {
+  console.log({ file });
   let fileName = file.path.split("\\")[2];
   const { ip, image, timestamp } = body;
   // fileName = `${ip}-${fileName}`;
-  // console.log(fileName);
   try {
     const record = new recordModel({
       fileName,
