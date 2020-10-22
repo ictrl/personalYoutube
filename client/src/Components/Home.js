@@ -68,28 +68,30 @@ const Home = () => {
 
   const handleSave = useCallback(async () => {
     setSave("Saved");
-    if (recordedChunks.length) {
-      const blob = new Blob(recordedChunks, {
-        type: "video/webm",
-      });
-      const file = new File([blob], await generateName(), {
-        type: blob.type,
-      });
-      const formData = new FormData();
-      formData.append("record", file);
-      formData.append("image", image);
-      formData.append("timestamp", getTimestamp());
-      formData.append("ip", await getIp());
-      const config = {
-        headers: {
-          "content-type": "multipart/form-data",
-        },
-      };
-      // const url = "http://localhost:8000/upload";
-      const url = "/upload";
-      post(url, formData, config)
-        .then((res) => console.log(res))
-        .catch((err) => console.error(err));
+    if (save !== "Saved") {
+      if (recordedChunks.length) {
+        const blob = new Blob(recordedChunks, {
+          type: "video/webm",
+        });
+        const file = new File([blob], await generateName(), {
+          type: blob.type,
+        });
+        const formData = new FormData();
+        formData.append("record", file);
+        formData.append("image", image);
+        formData.append("timestamp", getTimestamp());
+        formData.append("ip", await getIp());
+        const config = {
+          headers: {
+            "content-type": "multipart/form-data",
+          },
+        };
+        // const url = "http://localhost:8000/upload";
+        const url = "/upload";
+        post(url, formData, config)
+          .then((res) => console.log(res))
+          .catch((err) => console.error(err));
+      }
     }
   }, [recordedChunks]);
 
