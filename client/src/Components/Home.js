@@ -7,6 +7,7 @@ const Home = () => {
   const mediaRecorderRef = useRef(null);
   const [image, setImage] = useState(null);
   const [capturing, setCapturing] = useState(false);
+  const [save, setSave] = useState("Save");
   const [recordedChunks, setRecordedChunks] = useState([]);
   //button click handler
   const handleDataAvailable = useCallback(
@@ -66,6 +67,7 @@ const Home = () => {
   }, [recordedChunks]);
 
   const handleSave = useCallback(async () => {
+    setSave("Saved");
     if (recordedChunks.length) {
       const blob = new Blob(recordedChunks, {
         type: "video/webm",
@@ -159,7 +161,7 @@ const Home = () => {
             Retake
           </button>
           <button className="save" onClick={handleSave}>
-            Save
+            {save}
           </button>
           <button className="download" onClick={handleDownload}>
             Download

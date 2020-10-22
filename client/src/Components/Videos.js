@@ -39,6 +39,13 @@ const Videos = () => {
     getIp();
   }, [ip]);
 
+  const deleteVideo = (fileName) => {
+    let div = document.getElementById(`div-${fileName}`);
+    div.remove();
+    let url = `/delete/${fileName}`;
+    get(url).then((res) => console.log({ res }));
+  };
+
   const renderVideos = (item) => {
     return (
       <>
@@ -51,7 +58,11 @@ const Videos = () => {
             alt={item.fileName}
           ></img>
 
-          <p>{item.timestamp}</p>
+          <div className="row">
+            <p>{item.timestamp}</p>
+            &nbsp; &nbsp;
+            <button onClick={() => deleteVideo(item.fileName)}>Delete</button>
+          </div>
         </div>
       </>
     );

@@ -28,7 +28,6 @@ const saveRecord = async (file, body) => {
       image: image,
     });
     let doc = await record.save();
-    console.log(doc.fileName);
     return doc;
   } catch (error) {
     console.error({ error });
@@ -45,7 +44,14 @@ const getRecords = async (ip) => {
   }
 };
 
+const deleteRecord = async (fileName) => {
+  let doc = await recordModel.deleteOne({ fileName });
+  console.log({ doc });
+  return doc;
+};
+
 module.exports = {
   saveRecord,
   getRecords,
+  deleteRecord,
 };

@@ -1,11 +1,11 @@
 require("dotenv").config();
 const express = require("express");
-const { createReadStream } = require("fs");
+const { createReadStream, unlink } = require("fs");
 const cors = require("cors");
 const multer = require("multer");
 const mongoose = require("mongoose");
 const app = express();
-const { saveRecord, getRecords } = require("./models/record");
+const { saveRecord, getRecords, deleteRecord } = require("./models/record");
 
 mongoose.connect(
   process.env.DATABASE,
@@ -55,12 +55,29 @@ app.get("/video/:fileName", async (req, res) => {
   }
 });
 
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+app.get("/delete/:fileName", (req, res) => {
+  console.log("RUN");
+  const { fileName } = req.params;
+  console.log({ fileName });
+  const path = `./public/uploads/${fileName}`;
+
+  unlink(path, (err) => {
+    if (err) {
+      console.error(err);
+      res.json(err);
+      return;
+    }
+    deleteRecord(fileName);
+    res.json(fileName);
   });
-}
+});
+
+// if (process.env.NODE_ENV === "production") {
+//   app.use(express.static("client/build"));
+//   app.get("*", (req, res) => {
+//     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+//   });
+// }
 
 const PORT = process.env.PORT || 8000;
 
